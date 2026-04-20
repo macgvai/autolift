@@ -1,0 +1,28 @@
+services:
+  nuxt:
+    build:
+      context: .
+      target: development
+    ports:
+      - "3000:3000"
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+      NUXT_HOST: "0.0.0.0"
+      NUXT_PORT: "3000"
+    volumes:
+      - .:/app
+      - nuxt_node_modules:/app/node_modules
+      - nuxt_build:/app/.nuxt
+
+  nuxt-prod:
+    build:
+      context: .
+      target: production
+    profiles:
+      - prod
+    ports:
+      - "3000:3000"
+
+volumes:
+  nuxt_node_modules:
+  nuxt_build:

@@ -73,3 +73,17 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+## Docker Compose
+
+Start the development container on `http://localhost:3000`:
+
+```bash
+docker compose up --build
+```
+
+Start the production container:
+
+```bash
+docker compose --profile prod up --build nuxt-prod
+```
