@@ -1,7 +1,9 @@
 <script setup lang="ts">
-const contactPhone = '+7 (495) 118-52-20'
-const contactPhoneHref = 'tel:+74951185220'
-const contactEmail = 'sales@autolift-pro.ru'
+const companyBrand = 'STROYPROTEH.RU'
+const companyName = 'СтройПротех'
+const contactPhone = 'stroyproteh.ru'
+const contactPhoneHref = 'https://stroyproteh.ru/'
+const contactEmail = 'info@stroyproteh.ru'
 const headerLinks = [
   { label: 'Каталог', href: '#catalog' },
   { label: 'Преимущества', href: '#advantages' },
@@ -173,7 +175,7 @@ const leadForm = reactive({
 const mailtoLink = computed(() => {
   const subject = `Запрос КП на автомобильные подъемники${leadForm.company ? ` - ${leadForm.company}` : ''}`
   const body = [
-    'Заявка с лендинга Автолифт Про',
+    `Заявка с сайта ${companyName}`,
     '',
     `Имя: ${leadForm.name || '-'}`,
     `Телефон: ${leadForm.phone || '-'}`,
@@ -201,12 +203,12 @@ const toggleMobileMenu = () => {
 watch(() => route.fullPath, closeMobileMenu)
 
 useSeoMeta({
-  title: 'Автомобильные подъемники для СТО, дилеров и шинных центров',
-  description: 'Продажа, подбор, доставка и монтаж автомобильных подъемников под ключ: двухстоечные, ножничные, четырехстоечные и грузовые решения.',
-  ogTitle: 'Автолифт Про',
-  ogDescription: 'Подбираем и запускаем автомобильные подъемники для сервиса под ключ.',
-  twitterTitle: 'Автолифт Про',
-  twitterDescription: 'Продажа и монтаж автомобильных подъемников для СТО и дилерских центров.'
+  title: 'Продажа и обслуживание автомобильных подъемников для СТО и дилерских центров',
+  description: 'СтройПротех: продажа, подбор, доставка, монтаж и обслуживание автомобильных подъемников под ключ: двухстоечные, ножничные, четырехстоечные и грузовые решения.',
+  ogTitle: 'СтройПротех',
+  ogDescription: 'Продажа и сервис автомобильных подъемников для СТО, дилеров и шинных центров.',
+  twitterTitle: 'СтройПротех',
+  twitterDescription: 'Подбор, поставка, монтаж и обслуживание автомобильных подъемников.'
 })
 </script>
 
@@ -231,8 +233,8 @@ useSeoMeta({
           </span>
 
           <span class="min-w-0">
-            <span class="font-display block truncate text-2xl leading-none text-white">AUTOLIFT.PRO</span>
-            <span class="mt-1 block truncate text-[0.68rem] uppercase tracking-[0.32em] text-white/45">подъемники для автосервиса</span>
+            <span class="font-display block truncate text-2xl leading-none text-white">{{ companyBrand }}</span>
+            <span class="mt-1 block truncate text-[0.68rem] uppercase tracking-[0.32em] text-white/45">продажа и сервис автоподъемников</span>
           </span>
         </a>
 
@@ -264,7 +266,7 @@ useSeoMeta({
             :href="contactPhoneHref"
             class="text-right"
           >
-            <span class="block text-[0.68rem] uppercase tracking-[0.3em] text-white/45">отдел продаж</span>
+            <span class="block text-[0.68rem] uppercase tracking-[0.3em] text-white/45">сайт компании</span>
             <span class="block text-lg font-semibold text-white">{{ contactPhone }}</span>
           </a>
         </div>
@@ -370,17 +372,17 @@ useSeoMeta({
     </Transition>
 
     <main id="top">
-      <section class="container-shell relative grid gap-10 pb-18 pt-12 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:pt-18 xl:pb-24">
+      <section class="container-shell relative grid gap-10 pb-18 pt-12 lg:grid-cols-[1fr] lg:items-center lg:pt-18 xl:pb-24">
         <div>
-          <span class="eyebrow">Поставка по России и СНГ</span>
+          <span class="eyebrow">Продажа, монтаж и сервис по России и СНГ</span>
 
           <h1 class="mt-6 max-w-4xl font-display text-5xl leading-[0.92] text-white sm:text-6xl xl:text-7xl">
-            Автомобильные подъемники, которые выдерживают реальный поток сервиса
+            Автомобильные подъемники для СТО, дилерских центров и шинных комплексов
           </h1>
 
           <p class="mt-6 max-w-2xl text-lg leading-8 text-white/72">
-            Подбираем конфигурацию под СТО, дилерский центр, шинный сервис и грузовой парк.
-            Берем на себя аудит помещения, доставку, монтаж, запуск и сопровождение после ввода.
+            {{ companyName }} поставляет и обслуживает автомобильные подъемники под формат вашего сервиса:
+            от подбора модели и расчета проекта до монтажа, запуска и последующего обслуживания.
           </p>
 
           <div class="mt-8 flex flex-wrap gap-4">
@@ -410,95 +412,6 @@ useSeoMeta({
               <p class="mt-3 text-sm leading-6 text-white/65">
                 {{ stat.label }}
               </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="panel-surface rounded-[2rem] p-6 sm:p-8">
-          <div class="flex flex-wrap items-start justify-between gap-4">
-            <div class="max-w-md">
-              <p class="text-[0.72rem] uppercase tracking-[0.32em] text-white/45">
-                Экспресс-подбор под объект
-              </p>
-              <h2 class="mt-3 font-display text-3xl leading-none text-white sm:text-[2.4rem]">
-                Проектируем пост не под каталог, а под вашу загрузку
-              </h2>
-            </div>
-
-            <div class="rounded-[1.5rem] border border-white/10 bg-white/[0.06] px-4 py-4 text-right">
-              <p class="text-[0.68rem] uppercase tracking-[0.3em] text-white/45">
-                коммерческое предложение
-              </p>
-              <p class="mt-2 font-display text-4xl leading-none text-[var(--site-accent-soft)]">
-                48ч
-              </p>
-            </div>
-          </div>
-
-          <div class="mt-7 grid gap-4 sm:grid-cols-2">
-            <div class="rounded-[1.5rem] border border-white/10 bg-black/[0.15] p-5">
-              <p class="label-caption">
-                Формат объекта
-              </p>
-              <p class="mt-3 text-lg font-semibold text-white">
-                От 1 до 12 постов
-              </p>
-              <p class="mt-2 text-sm leading-6 text-white/62">
-                СТО, дилеры, малярные и шинные цеха, корпоративные парки.
-              </p>
-            </div>
-            <div class="rounded-[1.5rem] border border-white/10 bg-black/[0.15] p-5">
-              <p class="label-caption">
-                Комплектация
-              </p>
-              <p class="mt-3 text-lg font-semibold text-white">
-                220 В / 380 В
-              </p>
-              <p class="mt-2 text-sm leading-6 text-white/62">
-                Базовые модели со склада и расширенные комплекты под техзадание.
-              </p>
-            </div>
-          </div>
-
-          <div class="hero-visual mt-7 overflow-hidden rounded-[1.75rem] border border-white/10 p-6">
-            <div class="lift-illustration">
-              <span class="lift-column" />
-              <div class="lift-car">
-                <span class="lift-roof" />
-                <span class="lift-body" />
-                <div class="lift-wheels">
-                  <span />
-                  <span />
-                </div>
-              </div>
-              <span class="lift-column" />
-            </div>
-
-            <div class="relative z-10 mt-6 grid gap-3 sm:grid-cols-3">
-              <div class="rounded-2xl border border-white/10 bg-black/[0.15] px-4 py-3">
-                <p class="label-caption">
-                  Грузоподъемность
-                </p>
-                <p class="mt-2 text-base font-semibold text-white">
-                  3.5-18 т
-                </p>
-              </div>
-              <div class="rounded-2xl border border-white/10 bg-black/[0.15] px-4 py-3">
-                <p class="label-caption">
-                  Высота подъема
-                </p>
-                <p class="mt-2 text-base font-semibold text-white">
-                  до 2 050 мм
-                </p>
-              </div>
-              <div class="rounded-2xl border border-white/10 bg-black/[0.15] px-4 py-3">
-                <p class="label-caption">
-                  Монтаж
-                </p>
-                <p class="mt-2 text-base font-semibold text-white">
-                  под ключ
-                </p>
-              </div>
             </div>
           </div>
         </div>
@@ -897,17 +810,17 @@ useSeoMeta({
       <div class="flex flex-col gap-5 rounded-[1.75rem] border border-white/10 bg-[rgba(10,14,22,0.82)] px-6 py-6 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p class="font-display text-2xl text-white">
-            AUTOLIFT.PRO
+            {{ companyBrand }}
           </p>
           <p class="mt-2 text-sm leading-6 text-white/55">
-            Лендинг для продажи автомобильных подъемников: подбор, поставка, монтаж и запуск под ключ.
+            Продажа и обслуживание автомобильных подъемников: подбор, поставка, монтаж, запуск и сервис для СТО, дилеров и шинных центров.
           </p>
         </div>
 
         <div class="text-sm leading-6 text-white/55 sm:text-right">
           <p>{{ contactPhone }}</p>
           <p>{{ contactEmail }}</p>
-          <p>© {{ new Date().getFullYear() }} Автолифт Про</p>
+          <p>© {{ new Date().getFullYear() }} {{ companyName }}</p>
         </div>
       </div>
     </footer>

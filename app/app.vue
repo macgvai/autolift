@@ -12,14 +12,14 @@ useHead({
 })
 
 useSeoMeta({
-  titleTemplate: title => title ? `${title} · Автолифт Про` : 'Автолифт Про',
-  ogSiteName: 'Автолифт Про',
+  titleTemplate: title => title ? `${title} · СтройПротех` : 'СтройПротех',
+  ogSiteName: 'СтройПротех',
   twitterCard: 'summary_large_image'
 })
 </script>
-
 <template>
   <UApp>
     <NuxtPage />
   </UApp>
 </template>
+
