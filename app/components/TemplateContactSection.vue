@@ -9,8 +9,8 @@ type LeadForm = {
 
 const props = defineProps<{
   companyName: string
-  contactPhone: string
-  contactPhoneHref: string
+  websiteLabel: string
+  websiteHref: string
   contactEmail: string
 }>()
 
@@ -60,12 +60,12 @@ const submitLead = async () => {
 
         <div class="mt-8 grid gap-4 sm:grid-cols-2">
           <a
-            :href="contactPhoneHref"
+            :href="websiteHref"
             class="metal-card rounded-[1.5rem] p-5 transition hover:border-[rgba(249,115,22,0.32)]"
           >
-            <p class="label-caption">Телефон</p>
-            <p class="mt-3 text-xl font-semibold text-white">{{ contactPhone }}</p>
-            <p class="mt-2 text-sm leading-6 text-white/62">Быстрый созвон по выбору модели, монтажу и срокам отгрузки.</p>
+            <p class="label-caption">Сайт компании</p>
+            <p class="mt-3 text-xl font-semibold text-white">{{ websiteLabel }}</p>
+            <p class="mt-2 text-sm leading-6 text-white/62">Официальный сайт с общей информацией о бренде, решениях и каналах связи.</p>
           </a>
           <a
             :href="`mailto:${contactEmail}`"

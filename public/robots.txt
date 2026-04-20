@@ -1,2 +1,5 @@
-User-Agent: *
-Disallow:
+User-agent: *
+Allow: /
+
+Host: stroyproteh.ru
+Sitemap: https://stroyproteh.ru/sitemap.xml

@@ -1,36 +1,130 @@
 <script setup lang="ts">
-const companyBrand = 'STROYPROTEH.RU'
-const companyName = 'СтройПротех'
-const contactPhone = 'stroyproteh.ru'
-const contactPhoneHref = 'https://stroyproteh.ru/'
-const contactEmail = 'info@stroyproteh.ru'
+import { companyStats, faqItems, homePageMeta, liftCatalog, siteConfig } from '~/data/site'
 
-const stats = [
+const companyBrand = siteConfig.brandName
+const companyName = siteConfig.companyName
+const websiteLabel = siteConfig.websiteLabel
+const websiteHref = siteConfig.websiteHref
+const contactEmail = siteConfig.contactEmail
+const stats = companyStats
+const pageUrl = siteConfig.siteUrl
+const socialImageUrl = new URL(siteConfig.ogImagePath, siteConfig.siteUrl).toString()
+
+useSeoMeta({
+  title: homePageMeta.title,
+  description: homePageMeta.description,
+  keywords: homePageMeta.keywords.join(', '),
+  ogTitle: homePageMeta.socialTitle,
+  ogDescription: homePageMeta.socialDescription,
+  twitterTitle: homePageMeta.socialTitle,
+  twitterDescription: homePageMeta.socialDescription
+})
+
+const structuredData = [
   {
-    value: '180+',
-    label: 'подъемных постов смонтировали для СТО, дилеров и шинных центров'
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': `${pageUrl}#organization`,
+    name: companyName,
+    alternateName: companyBrand,
+    url: siteConfig.siteUrl,
+    email: contactEmail,
+    image: socialImageUrl,
+    logo: socialImageUrl,
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        contactType: 'sales',
+        url: websiteHref,
+        email: contactEmail,
+        areaServed: ['RU', 'KZ', 'BY', 'AM', 'KG', 'UZ'],
+        availableLanguage: ['ru']
+      }
+    ]
   },
   {
-    value: '48 часов',
-    label: 'уходит на коммерческое предложение, планировку боксов и подбор модели'
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${pageUrl}#website`,
+    url: pageUrl,
+    name: companyName,
+    inLanguage: 'ru-RU',
+    publisher: {
+      '@id': `${pageUrl}#organization`
+    }
   },
   {
-    value: '36 месяцев',
-    label: 'гарантия на раму, гидравлику и основные узлы поставки'
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${pageUrl}#webpage`,
+    url: pageUrl,
+    name: homePageMeta.title,
+    description: homePageMeta.description,
+    inLanguage: 'ru-RU',
+    isPartOf: {
+      '@id': `${pageUrl}#website`
+    },
+    about: {
+      '@id': `${pageUrl}#service`
+    },
+    primaryImageOfPage: socialImageUrl
   },
   {
-    value: '7-14 дней',
-    label: 'средний срок отгрузки со склада по типовым конфигурациям'
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${pageUrl}#service`,
+    name: 'Продажа, монтаж и сервис автомобильных подъемников',
+    description: homePageMeta.description,
+    serviceType: 'Автомобильные подъемники под ключ для СТО, дилеров и шинных центров',
+    url: pageUrl,
+    provider: {
+      '@id': `${pageUrl}#organization`
+    },
+    areaServed: ['Россия', 'СНГ'],
+    availableChannel: [
+      {
+        '@type': 'ServiceChannel',
+        serviceUrl: websiteHref,
+        availableLanguage: ['ru']
+      }
+    ]
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    '@id': `${pageUrl}#catalog-schema`,
+    name: 'Категории автомобильных подъемников',
+    itemListOrder: 'https://schema.org/ItemListOrderAscending',
+    numberOfItems: liftCatalog.length,
+    itemListElement: liftCatalog.map((lift, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: lift.title,
+      description: `${lift.description} Грузоподъемность ${lift.capacity}, стоимость ${lift.price}.`,
+      url: `${pageUrl}/#catalog`
+    }))
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': `${pageUrl}#faq-schema`,
+    mainEntity: faqItems.map(item => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer
+      }
+    }))
   }
 ]
 
-useSeoMeta({
-  title: 'Продажа и обслуживание автомобильных подъемников для СТО и дилерских центров',
-  description: 'СтройПротех: продажа, подбор, доставка, монтаж и обслуживание автомобильных подъемников под ключ: двухстоечные, ножничные, четырехстоечные и грузовые решения.',
-  ogTitle: 'СтройПротех',
-  ogDescription: 'Продажа и сервис автомобильных подъемников для СТО, дилеров и шинных центров.',
-  twitterTitle: 'СтройПротех',
-  twitterDescription: 'Подбор, поставка, монтаж и обслуживание автомобильных подъемников.'
+useHead({
+  script: structuredData.map((schema, index) => ({
+    key: `ld-json-${index}`,
+    type: 'application/ld+json',
+    textContent: JSON.stringify(schema)
+  }))
 })
 </script>
 
@@ -41,8 +135,8 @@ useSeoMeta({
 
     <TemplateHeader
       :companyBrand="companyBrand"
-      :contactPhone="contactPhone"
-      :contactPhoneHref="contactPhoneHref"
+      :websiteLabel="websiteLabel"
+      :websiteHref="websiteHref"
       :contactEmail="contactEmail"
     />
 
@@ -58,16 +152,17 @@ useSeoMeta({
       <TemplateFaqSection />
       <TemplateContactSection
         :companyName="companyName"
-        :contactPhone="contactPhone"
-        :contactPhoneHref="contactPhoneHref"
+        :websiteLabel="websiteLabel"
+        :websiteHref="websiteHref"
         :contactEmail="contactEmail"
       />
     </main>
 
     <TemplateFooter
       :companyBrand="companyBrand"
-      :contactPhone="contactPhone"
-      :contactPhoneHref="contactPhoneHref"
+      :companyName="companyName"
+      :websiteLabel="websiteLabel"
+      :websiteHref="websiteHref"
       :contactEmail="contactEmail"
     />
   </div>

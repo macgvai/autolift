@@ -1,8 +1,8 @@
 <script setup lang="ts">
 defineProps<{
   companyBrand: string
-  contactPhone: string
-  contactPhoneHref: string
+  websiteLabel: string
+  websiteHref: string
   contactEmail: string
 }>()
 
@@ -50,7 +50,10 @@ watch(() => route.fullPath, closeMobileMenu)
         </span>
       </a>
 
-      <nav class="ml-auto hidden items-center gap-6 text-sm text-white/70 lg:flex">
+      <nav
+        class="ml-auto hidden items-center gap-6 text-sm text-white/70 lg:flex"
+        aria-label="Основная навигация"
+      >
         <a
           href="#catalog"
           class="transition hover:text-white"
@@ -75,11 +78,11 @@ watch(() => route.fullPath, closeMobileMenu)
 
       <div class="hidden items-center gap-3 xl:flex">
         <a
-          :href="contactPhoneHref"
+          :href="websiteHref"
           class="text-right"
         >
           <span class="block text-[0.68rem] uppercase tracking-[0.3em] text-white/45">сайт компании</span>
-          <span class="block text-lg font-semibold text-white">{{ contactPhone }}</span>
+          <span class="block text-lg font-semibold text-white">{{ websiteLabel }}</span>
         </a>
       </div>
 
@@ -130,7 +133,10 @@ watch(() => route.fullPath, closeMobileMenu)
       >
         <div class="container-shell">
           <div class="mobile-menu-panel rounded-[1.75rem] p-4">
-            <nav class="grid gap-2">
+            <nav
+              class="grid gap-2"
+              aria-label="Мобильная навигация"
+            >
               <a
                 v-for="(link, index) in headerLinks"
                 :key="`${link.href}-mobile`"
@@ -145,11 +151,11 @@ watch(() => route.fullPath, closeMobileMenu)
 
             <div class="mt-4 grid gap-3 sm:grid-cols-2">
               <a
-                :href="contactPhoneHref"
+                :href="websiteHref"
                 class="mobile-contact-card"
               >
-                <span class="label-caption">Телефон</span>
-                <span class="mt-2 block text-lg font-semibold text-white">{{ contactPhone }}</span>
+                <span class="label-caption">Сайт</span>
+                <span class="mt-2 block text-lg font-semibold text-white">{{ websiteLabel }}</span>
               </a>
               <a
                 :href="`mailto:${contactEmail}`"
