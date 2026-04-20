@@ -40,6 +40,7 @@ ENV NODE_ENV=production
 ENV NUXT_TELEMETRY_DISABLED=1
 
 COPY --from=build /app/.output ./.output
+COPY --from=build /app/public ./public
 
 EXPOSE 3000
 
