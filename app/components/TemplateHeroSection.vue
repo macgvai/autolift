@@ -35,7 +35,7 @@ defineProps<{
           href="#catalog"
           class="btn-secondary"
         >
-          Смотреть модели
+          Смотреть модели.
         </a>
       </div>
 
