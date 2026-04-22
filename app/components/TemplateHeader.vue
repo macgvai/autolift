@@ -78,7 +78,7 @@ watch(() => route.fullPath, closeMobileMenu)
 
           <a
             href="#contact"
-            class="btn-primary hidden shrink-0 sm:inline-flex"
+            class="btn-primary !hidden shrink-0 lg:!inline-flex"
           >
             Получить КП
           </a>
