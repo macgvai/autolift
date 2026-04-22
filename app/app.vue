@@ -12,7 +12,7 @@ useHead(() => ({
   meta: [
     { charset: 'utf-8' },
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-    { name: 'theme-color', content: '#070a0f' },
+    { name: 'theme-color', content: '#edf2f7' },
     { name: 'format-detection', content: 'telephone=no' }
   ],
   link: [
@@ -38,6 +38,7 @@ useSeoMeta({
   robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
 })
 </script>
+
 <template>
   <UApp>
     <NuxtPage />

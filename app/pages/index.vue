@@ -129,9 +129,9 @@ useHead({
 </script>
 
 <template>
-  <div class="relative overflow-hidden">
-    <div class="pointer-events-none absolute inset-x-0 top-[-12rem] h-[34rem] bg-[radial-gradient(circle,rgba(249,115,22,0.24),transparent_58%)] blur-3xl" />
-    <div class="pointer-events-none absolute right-[-12rem] top-[28rem] h-[28rem] w-[28rem] rounded-full bg-[rgba(255,184,107,0.08)] blur-3xl" />
+  <div class="page-shell">
+    <div class="page-orb page-orb-left" />
+    <div class="page-orb page-orb-right" />
 
     <TemplateHeader
       :companyBrand="companyBrand"
@@ -141,10 +141,7 @@ useHead({
     />
 
     <main id="top">
-      <TemplateHeroSection
-        :companyName="companyName"
-        :stats="stats"
-      />
+      <TemplateHeroSection :companyName="companyName" />
       <TemplateStatsSection :stats="stats" />
       <TemplateCatalogSection />
       <TemplateAdvantagesSection />
