@@ -4,6 +4,7 @@ defineProps<{
   websiteLabel: string
   websiteHref: string
   contactEmail: string
+  contactPhone:string
 }>()
 
 const headerLinks = [
@@ -67,22 +68,37 @@ watch(() => route.fullPath, closeMobileMenu)
         </nav>
 
         <div class="ml-auto flex items-center gap-3 lg:ml-0">
-          <div class="hidden xl:block xl:text-right">
-            <span class="block text-[0.68rem] uppercase tracking-[0.28em] text-[var(--site-muted)]">сайт компании</span>
-            <a
-              :href="websiteHref"
-              class="mt-1 block text-sm font-semibold text-[var(--site-text)]"
-            >
-              {{ websiteLabel }}
-            </a>
-          </div>
 
+<!--          <a-->
+<!--            href="#contact"-->
+<!--            class="btn-primary !hidden shrink-0 lg:!inline-flex"-->
+<!--          >-->
+<!--            Расчет машиномест-->
+<!--          </a>-->          <div class="xl:block text-right">
+          <!--            <span class="block text-[0.68rem] uppercase tracking-[0.28em] text-[var(&#45;&#45;site-muted)]">звоните</span>-->
           <a
-            href="#contact"
-            class="btn-primary !hidden shrink-0 lg:!inline-flex"
+              :href="`tel:${contactPhone}`"
+              class="mt-1 flex items-center gap-1 text-sm font-semibold text-[var(--site-text)]"
           >
-            Расчет машиномест
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-phone"
+            >
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.6.28 1.2.47 1.78a2 2 0 0 0 .45.73l1.27 1.27a2 2 0 0 1 .45 2.11l-.2.6a2 2 0 0 0 .45 2.11l2.34 2.34a2 2 0 0 0 2.11.45l.6-.2a2 2 0 0 1 2.11.45l1.27 1.27a2 2 0 0 0 .73.45c.58.19 1.18.35 1.78.47A2 2 0 0 1 22 16.92z" />
+            </svg>
+            <span class="hidden sm:inline">
+              {{ contactPhone }}
+            </span>
           </a>
+        </div>
 
           <button
             type="button"
@@ -127,11 +143,11 @@ watch(() => route.fullPath, closeMobileMenu)
 
             <div class="mt-4 grid gap-3 sm:grid-cols-2">
               <a
-                :href="websiteHref"
+                :href="`tel:${contactPhone}`"
                 class="mobile-contact-card"
               >
-                <span class="label-caption">Сайт</span>
-                <span class="mt-2 block text-base font-semibold text-[var(--site-text)]">{{ websiteLabel }}</span>
+                <span class="label-caption">Телефон</span>
+                <span class="mt-2 block text-base font-semibold text-[var(--site-text)]">{{ contactPhone }}</span>
               </a>
               <a
                 :href="`mailto:${contactEmail}`"

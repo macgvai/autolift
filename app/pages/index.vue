@@ -140,6 +140,7 @@ useHead({
       :websiteLabel="websiteLabel"
       :websiteHref="websiteHref"
       :contactEmail="contactEmail"
+      :contactPhone="contactPhone"
     />
 
     <main id="top">

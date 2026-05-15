@@ -73,29 +73,29 @@ const projectBlocks = [
       <aside
         class="hero-visual-panel"
         aria-label="Схема двухуровневого парковочного подъемника"
-      >
-        <div class="lift-scene">
-          <div class="scene-building" />
-          <div class="scene-parking">
-            P
-          </div>
+        style="    background-image: url(./bg.jpg); background-repeat: no-repeat; background-size: contain;background-position: center;"      >
+        <div class="lift-scene" >
+          <!--          <div class="scene-building" />-->
+<!--          <div class="scene-parking">-->
+<!--            P-->
+<!--          </div>-->
 
-          <div class="lift-system">
-            <span class="lift-brace" />
-            <span class="lift-column lift-column-left" />
-            <span class="lift-column lift-column-right" />
-            <span class="lift-deck lift-deck-top" />
-            <span class="lift-deck lift-deck-bottom" />
+<!--          <div class="lift-system">-->
+<!--            <span class="lift-brace" />-->
+<!--            <span class="lift-column lift-column-left" />-->
+<!--            <span class="lift-column lift-column-right" />-->
+<!--            <span class="lift-deck lift-deck-top" />-->
+<!--            <span class="lift-deck lift-deck-bottom" />-->
 
-            <span class="lift-car lift-car-top">
-              <span class="lift-wheel lift-wheel-left" />
-              <span class="lift-wheel lift-wheel-right" />
-            </span>
-            <span class="lift-car lift-car-bottom">
-              <span class="lift-wheel lift-wheel-left" />
-              <span class="lift-wheel lift-wheel-right" />
-            </span>
-          </div>
+<!--            <span class="lift-car lift-car-top">-->
+<!--              <span class="lift-wheel lift-wheel-left" />-->
+<!--              <span class="lift-wheel lift-wheel-right" />-->
+<!--            </span>-->
+<!--            <span class="lift-car lift-car-bottom">-->
+<!--              <span class="lift-wheel lift-wheel-left" />-->
+<!--              <span class="lift-wheel lift-wheel-right" />-->
+<!--            </span>-->
+<!--          </div>-->
         </div>
 
         <div class="visual-caption">

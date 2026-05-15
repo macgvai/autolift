@@ -25,7 +25,7 @@ export const siteConfig = {
   websiteLabel: 'stroyproteh.ru',
   websiteHref: 'https://stroyproteh.ru/',
   contactEmail: 'info@stroyproteh.ru',
-  contactPhone: '+7 (___) ___-__-__',
+  contactPhone: '+79035235145',
   messengerLabel: 'WhatsApp / Telegram',
   companyLegalName: 'ООО «СтройПроТех»',
   companyInn: 'ИНН уточняется',
