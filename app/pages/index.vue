@@ -6,6 +6,8 @@ const companyName = siteConfig.companyName
 const websiteLabel = siteConfig.websiteLabel
 const websiteHref = siteConfig.websiteHref
 const contactEmail = siteConfig.contactEmail
+const contactPhone = siteConfig.contactPhone
+const messengerLabel = siteConfig.messengerLabel
 const stats = companyStats
 const pageUrl = siteConfig.siteUrl
 const socialImageUrl = new URL(siteConfig.ogImagePath, siteConfig.siteUrl).toString()
@@ -73,9 +75,9 @@ const structuredData = [
     '@context': 'https://schema.org',
     '@type': 'Service',
     '@id': `${pageUrl}#service`,
-    name: 'Продажа, монтаж и сервис автомобильных подъемников',
+    name: 'Поставка, монтаж, ремонт и обслуживание парковочных подъемников',
     description: homePageMeta.description,
-    serviceType: 'Автомобильные подъемники под ключ для СТО, дилеров и шинных центров',
+    serviceType: 'Парковочные подъемники для ЖК, БЦ, ТЦ, подземных паркингов, управляющих компаний и частных объектов',
     url: pageUrl,
     provider: {
       '@id': `${pageUrl}#organization`
@@ -93,14 +95,14 @@ const structuredData = [
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     '@id': `${pageUrl}#catalog-schema`,
-    name: 'Категории автомобильных подъемников',
+    name: 'Решения по парковочным подъемникам',
     itemListOrder: 'https://schema.org/ItemListOrderAscending',
     numberOfItems: liftCatalog.length,
     itemListElement: liftCatalog.map((lift, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       name: lift.title,
-      description: `${lift.description} Грузоподъемность ${lift.capacity}, стоимость ${lift.price}.`,
+      description: `${lift.description} Формат: ${lift.capacity}, расчет: ${lift.price}.`,
       url: `${pageUrl}/#catalog`
     }))
   },
@@ -144,6 +146,7 @@ useHead({
       <TemplateHeroSection :companyName="companyName" />
       <TemplateStatsSection :stats="stats" />
       <TemplateCatalogSection />
+      <TemplateServiceSection />
       <TemplateAdvantagesSection />
       <TemplateWorkflowSection />
       <TemplateFaqSection />
@@ -152,6 +155,8 @@ useHead({
         :websiteLabel="websiteLabel"
         :websiteHref="websiteHref"
         :contactEmail="contactEmail"
+        :contactPhone="contactPhone"
+        :messengerLabel="messengerLabel"
       />
     </main>
 
@@ -161,6 +166,11 @@ useHead({
       :websiteLabel="websiteLabel"
       :websiteHref="websiteHref"
       :contactEmail="contactEmail"
+      :contactPhone="contactPhone"
+      :companyLegalName="siteConfig.companyLegalName"
+      :companyInn="siteConfig.companyInn"
+      :companyOgrn="siteConfig.companyOgrn"
+      :legalAddress="siteConfig.legalAddress"
     />
   </div>
 </template>

@@ -2,8 +2,15 @@
 type LeadForm = {
   name: string
   phone: string
+  email: string
   company: string
-  liftType: string
+  address: string
+  objectType: string
+  taskType: string
+  parkingSpaces: string
+  ceilingHeight: string
+  placeSize: string
+  hasFiles: string
   message: string
 }
 
@@ -12,42 +19,77 @@ const props = defineProps<{
   websiteLabel: string
   websiteHref: string
   contactEmail: string
+  contactPhone?: string
+  messengerLabel?: string
 }>()
 
 const leadForm = reactive<LeadForm>({
   name: '',
   phone: '',
+  email: '',
   company: '',
-  liftType: '',
+  address: '',
+  objectType: '',
+  taskType: '',
+  parkingSpaces: '',
+  ceilingHeight: '',
+  placeSize: '',
+  hasFiles: '',
   message: ''
 })
 
 const requestChecklist = [
-  'Размеры бокса, высота потолка и толщина бетонного основания',
-  'Тип автомобилей и ожидаемая загрузка каждого поста',
-  'Количество сервисных линий, регион доставки и желаемые сроки ввода'
+  'город или адрес объекта, тип паркинга и задача: поставка, монтаж, ремонт, ТО или диагностика',
+  'количество машиномест, высота потолка, размеры места, масса и габариты автомобилей',
+  'фото, план паркинга, информация по основанию, колоннам, проездам и электропитанию'
 ]
 
 const responsePackage = [
   {
-    title: 'Подборка моделей',
-    text: 'Получите 2-3 рабочие конфигурации с аргументацией под ваш сценарий.'
+    title: 'Расчет машиномест',
+    text: 'Подберем тип парковочного подъемника и оценим возможность установки на объекте.'
   },
   {
-    title: 'Коммерческое предложение',
-    text: 'Смета с поставкой, монтажом, запуском и требованиями к объекту.'
+    title: 'Диагностика и сервис',
+    text: 'Для действующего оборудования подготовим план осмотра, ремонта или регулярного ТО.'
   }
 ]
 
+const objectTypes = [
+  'ЖК',
+  'БЦ',
+  'ТЦ',
+  'частный паркинг',
+  'гараж',
+  'управляющая компания',
+  'другое'
+]
+
+const taskTypes = [
+  'поставка',
+  'монтаж',
+  'ремонт',
+  'обслуживание',
+  'диагностика',
+  'запчасти'
+]
+
 const mailtoLink = computed(() => {
-  const subject = `Запрос КП на автомобильные подъемники${leadForm.company ? ` - ${leadForm.company}` : ''}`
+  const subject = `Запрос расчета парковочного подъемника${leadForm.company ? ` - ${leadForm.company}` : ''}`
   const body = [
     `Заявка с сайта ${props.companyName}`,
     '',
     `Имя: ${leadForm.name || '-'}`,
     `Телефон: ${leadForm.phone || '-'}`,
-    `Компания: ${leadForm.company || '-'}`,
-    `Интересующий тип: ${leadForm.liftType || '-'}`,
+    `E-mail: ${leadForm.email || '-'}`,
+    `Компания / УК / собственник: ${leadForm.company || '-'}`,
+    `Город / адрес объекта: ${leadForm.address || '-'}`,
+    `Тип объекта: ${leadForm.objectType || '-'}`,
+    `Задача: ${leadForm.taskType || '-'}`,
+    `Количество машиномест: ${leadForm.parkingSpaces || '-'}`,
+    `Высота потолка: ${leadForm.ceilingHeight || '-'}`,
+    `Размеры места: ${leadForm.placeSize || '-'}`,
+    `Есть фото / план паркинга: ${leadForm.hasFiles || '-'}`,
     '',
     leadForm.message || 'Комментарий не указан'
   ].join('\n')
@@ -69,11 +111,11 @@ const submitLead = async () => {
       <div class="surface-card-accent rounded-[2rem] p-6 sm:p-8">
         <span class="eyebrow">Контакты и заявка</span>
         <h2 class="section-title mt-5 text-4xl sm:text-5xl">
-          Получите подбор модели и коммерческое предложение под ваш объект
+          Получите расчет парковочного подъемника или заявку на диагностику
         </h2>
         <p class="mt-5 max-w-xl text-base leading-7 text-[var(--site-muted)]">
-          Напишите параметры помещения, тип автомобилей и желаемую производительность.
-          В ответ подготовим подборку моделей, бюджет и требования к монтажу.
+          Опишите объект, количество машиномест, ограничения по высоте и задачу. Для ремонта укажите,
+          что происходит с оборудованием: не поднимается, не опускается, простаивает или требует ТО.
         </p>
 
         <div class="mt-8 grid gap-4 sm:grid-cols-2">
@@ -88,7 +130,7 @@ const submitLead = async () => {
               {{ websiteLabel }}
             </p>
             <p class="mt-2 text-sm leading-6 text-[var(--site-muted)]">
-              Основная информация о компании, решениях и направлениях работы.
+              Информация о поставке, монтаже, ремонте, ТО и запчастях для парковочных подъемников.
             </p>
           </a>
 
@@ -103,9 +145,35 @@ const submitLead = async () => {
               {{ contactEmail }}
             </p>
             <p class="mt-2 text-sm leading-6 text-[var(--site-muted)]">
-              Подходит для планировок, тендерных запросов и подробного технического задания.
+              Подходит для планировок, фото паркинга, тендерных запросов и технических заданий.
             </p>
           </a>
+        </div>
+
+        <div class="mt-8 grid gap-4 sm:grid-cols-2">
+          <div class="metal-card rounded-[1.5rem] p-5">
+            <p class="label-caption">
+              Телефон
+            </p>
+            <p class="mt-3 text-lg font-semibold text-[var(--site-text)]">
+              {{ contactPhone || 'уточняется' }}
+            </p>
+            <p class="mt-2 text-sm leading-6 text-[var(--site-muted)]">
+              Для срочной диагностики, ремонта и выезда инженера на объект.
+            </p>
+          </div>
+
+          <div class="metal-card rounded-[1.5rem] p-5">
+            <p class="label-caption">
+              Мессенджеры
+            </p>
+            <p class="mt-3 text-lg font-semibold text-[var(--site-text)]">
+              {{ messengerLabel || 'WhatsApp / Telegram' }}
+            </p>
+            <p class="mt-2 text-sm leading-6 text-[var(--site-muted)]">
+              Можно отправить фото, видео работы подъемника и план паркинга.
+            </p>
+          </div>
         </div>
 
         <div class="mt-8 rounded-[1.5rem] border border-[rgba(53,97,141,0.14)] bg-white/80 p-5">
@@ -149,7 +217,7 @@ const submitLead = async () => {
             Форма запроса
           </p>
           <h3 class="font-display text-3xl leading-tight text-[var(--site-text)]">
-            Параметры объекта и потребности по оборудованию
+            Параметры паркинга, задача и контактные данные
           </h3>
         </div>
 
@@ -175,22 +243,110 @@ const submitLead = async () => {
           </label>
 
           <label class="block">
-            <span class="label-caption">Компания</span>
+            <span class="label-caption">E-mail</span>
             <input
-              v-model="leadForm.company"
-              type="text"
+              v-model="leadForm.email"
+              type="email"
               class="form-input mt-2"
-              placeholder="Название сервиса или организации"
+              placeholder="mail@example.ru"
             >
           </label>
 
           <label class="block">
-            <span class="label-caption">Тип подъемника</span>
+            <span class="label-caption">Компания / УК</span>
             <input
-              v-model="leadForm.liftType"
+              v-model="leadForm.company"
               type="text"
               class="form-input mt-2"
-              placeholder="Например: двухстоечный 4 т"
+              placeholder="Название организации"
+            >
+          </label>
+
+          <label class="block sm:col-span-2">
+            <span class="label-caption">Город / адрес объекта</span>
+            <input
+              v-model="leadForm.address"
+              type="text"
+              class="form-input mt-2"
+              placeholder="Город, ЖК, БЦ, паркинг или адрес"
+            >
+          </label>
+
+          <label class="block">
+            <span class="label-caption">Тип объекта</span>
+            <select
+              v-model="leadForm.objectType"
+              class="form-input mt-2"
+            >
+              <option value="">
+                Выберите тип объекта
+              </option>
+              <option
+                v-for="item in objectTypes"
+                :key="item"
+                :value="item"
+              >
+                {{ item }}
+              </option>
+            </select>
+          </label>
+
+          <label class="block">
+            <span class="label-caption">Задача</span>
+            <select
+              v-model="leadForm.taskType"
+              class="form-input mt-2"
+            >
+              <option value="">
+                Выберите задачу
+              </option>
+              <option
+                v-for="item in taskTypes"
+                :key="item"
+                :value="item"
+              >
+                {{ item }}
+              </option>
+            </select>
+          </label>
+
+          <label class="block">
+            <span class="label-caption">Количество машиномест</span>
+            <input
+              v-model="leadForm.parkingSpaces"
+              type="text"
+              class="form-input mt-2"
+              placeholder="Например: 4, 12, 30"
+            >
+          </label>
+
+          <label class="block">
+            <span class="label-caption">Высота потолка</span>
+            <input
+              v-model="leadForm.ceilingHeight"
+              type="text"
+              class="form-input mt-2"
+              placeholder="Например: 3,4 м"
+            >
+          </label>
+
+          <label class="block">
+            <span class="label-caption">Размеры места</span>
+            <input
+              v-model="leadForm.placeSize"
+              type="text"
+              class="form-input mt-2"
+              placeholder="Ширина, длина, проезд"
+            >
+          </label>
+
+          <label class="block">
+            <span class="label-caption">Фото / план паркинга</span>
+            <input
+              v-model="leadForm.hasFiles"
+              type="text"
+              class="form-input mt-2"
+              placeholder="Есть / нет / отправим отдельно"
             >
           </label>
 
@@ -200,7 +356,7 @@ const submitLead = async () => {
               v-model="leadForm.message"
               rows="6"
               class="form-input mt-2 min-h-36 resize-y"
-              placeholder="Площадь бокса, высота потолка, количество постов, тип автомобилей, регион доставки"
+              placeholder="Опишите задачу, состояние оборудования, ограничения по паркингу, автомобили, сроки и удобный способ связи"
             />
           </label>
         </div>
@@ -210,11 +366,11 @@ const submitLead = async () => {
             type="submit"
             class="btn-primary border-0"
           >
-            Получить коммерческое предложение
+            Получить расчет парковочного подъемника
           </button>
 
           <p class="max-w-sm text-sm leading-6 text-[var(--site-muted)]">
-            Кнопка откроет ваш почтовый клиент с уже собранной заявкой. Текст письма можно доработать под ваш бренд.
+            Сейчас кнопка открывает почтовый клиент с собранной заявкой. Для стабильного приема заявок лучше подключить серверную отправку формы, политику конфиденциальности и согласие на обработку персональных данных.
           </p>
         </div>
       </form>

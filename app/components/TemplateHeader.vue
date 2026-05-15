@@ -7,11 +7,12 @@ defineProps<{
 }>()
 
 const headerLinks = [
-  { label: 'Каталог', href: '#catalog' },
-  { label: 'Преимущества', href: '#advantages' },
-  { label: 'Поставка', href: '#workflow' },
-  { label: 'FAQ', href: '#faq' },
-  { label: 'Контакты', href: '#contact' }
+  { label: 'Решения', href: '#catalog' },
+  { label: 'Сервис и ремонт', href: '#service' },
+  { label: 'Почему мы', href: '#advantages' },
+  { label: 'Монтаж и запуск', href: '#workflow' },
+  { label: 'Вопросы', href: '#faq' },
+  { label: 'Заявка', href: '#contact' }
 ]
 
 const mobileMenuOpen = ref(false)
@@ -47,12 +48,12 @@ watch(() => route.fullPath, closeMobileMenu)
 
           <span class="min-w-0">
             <span class="font-display block truncate text-lg font-semibold tracking-[0.08em] text-[var(--site-text)] sm:text-xl">{{ companyBrand }}</span>
-            <span class="mt-1 block truncate text-[0.68rem] uppercase tracking-[0.28em] text-[var(--site-muted)]">подъемники для сервисных зон</span>
+            <span class="mt-1 block truncate text-[0.68rem] uppercase tracking-[0.18em] text-[var(--site-muted)]">парковочные подъемники: поставка, монтаж, ремонт и обслуживание</span>
           </span>
         </a>
 
         <nav
-          class="ml-auto hidden items-center gap-6 lg:flex"
+          class="ml-auto hidden items-center gap-5 lg:flex"
           aria-label="Основная навигация"
         >
           <a
@@ -80,7 +81,7 @@ watch(() => route.fullPath, closeMobileMenu)
             href="#contact"
             class="btn-primary !hidden shrink-0 lg:!inline-flex"
           >
-            Получить КП
+            Расчет машиномест
           </a>
 
           <button
@@ -146,7 +147,7 @@ watch(() => route.fullPath, closeMobileMenu)
               class="btn-primary mt-4 w-full"
               @click="closeMobileMenu"
             >
-              Получить КП
+              Расчет машиномест
             </a>
           </div>
         </div>

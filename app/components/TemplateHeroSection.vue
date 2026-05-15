@@ -4,121 +4,131 @@ defineProps<{
 }>()
 
 const heroPoints = [
-  'Подбор конфигурации под поток сервиса, высоту потолка и тип автопарка',
-  'Коммерческое предложение с учетом монтажа, электрики и требований к основанию',
-  'Поставка по России и СНГ с запуском, инструктажем и сервисной поддержкой'
+  'Подбор под высоту потолка, габариты машиноместа, колонны, проезды, массу автомобилей и основание.',
+  'Монтаж, анкерение, подключение, настройка гидравлики, электрики, датчиков и систем безопасности.',
+  'Диагностика, регламентное ТО, ремонт, замена расходных и критичных узлов после запуска.'
 ]
 
 const projectBlocks = [
   {
-    title: 'Подбор и расчет',
-    text: 'Сравниваем 2-3 рабочие конфигурации, чтобы вы могли согласовать проект по бюджету и срокам.'
+    title: 'Подбор типа подъемника',
+    text: 'Зависимая или независимая схема, масса и габариты автомобилей, режим пользования и ограничения объекта.'
   },
   {
-    title: 'Монтаж и пусконаладка',
-    text: 'Берем на себя анкерение, настройку, проверку геометрии и ввод оборудования в эксплуатацию.'
+    title: 'Схема и требования',
+    text: 'Предварительное размещение, основание, высота, электропитание, зона проезда и безопасная эксплуатация.'
   },
   {
-    title: 'Сервис после запуска',
-    text: 'Сопровождаем объект запчастями, регламентным обслуживанием и консультациями инженеров.'
+    title: 'Бюджет и документы',
+    text: 'Состав поставки, монтаж, запуск, обслуживание и перечень документов после ввода оборудования.'
   }
-]
-
-const proposalItems = [
-  'подборка моделей под ваш сценарий эксплуатации',
-  'ориентир по срокам поставки и монтажному окну',
-  'требования к полу, питанию и подготовке бокса'
 ]
 </script>
 
 <template>
-  <section class="container-shell pb-14 pt-6 sm:pt-8 lg:pb-18">
-    <div class="grid gap-6 xl:grid-cols-[1.16fr_0.84fr]">
-      <div class="panel-surface rounded-[2rem] p-6 sm:p-8 lg:p-10">
-        <span class="eyebrow">Поставка, монтаж и сервис по России и СНГ</span>
+  <section class="hero-section container-shell">
+    <div class="hero-layout">
+      <div class="hero-copy">
+        <span class="eyebrow">Парковочные подъемники / сервис / монтаж</span>
 
-        <h1 class="section-title mt-6 max-w-4xl text-4xl sm:text-5xl xl:text-[4.3rem]">
-          Автомобильные подъемники для СТО, дилерских центров и грузовых сервисов
+        <h1 class="hero-title section-title mt-6">
+          Парковочные подъемники для ЖК, БЦ, ТЦ и частных паркингов
         </h1>
 
-        <p class="mt-6 max-w-2xl text-[1.05rem] leading-8 text-[var(--site-muted)]">
-          {{ companyName }} поставляет автомобильные подъемники как часть рабочего процесса:
-          от подбора модели и расчета бюджета до монтажа, запуска и последующего обслуживания.
+        <p class="hero-text mt-6">
+          {{ companyName }} помогает увеличить количество машиномест, восстановить неисправное оборудование
+          и организовать безопасную эксплуатацию парковочных подъемников: от подбора и монтажа до ремонта,
+          технического обслуживания и поставки запчастей.
         </p>
 
-        <div class="mt-8 flex flex-wrap gap-3">
+        <div class="hero-actions mt-8">
           <a
             href="#contact"
             class="btn-primary"
           >
-            Запросить подбор
+            Получить расчет машиномест
           </a>
           <a
-            href="#catalog"
+            href="#service"
             class="btn-secondary"
           >
-            Смотреть модели
+            Вызвать инженера на объект
           </a>
         </div>
 
-        <div class="mt-8 grid gap-3 lg:grid-cols-3">
+        <div class="hero-points mt-10">
           <div
-            v-for="point in heroPoints"
+            v-for="(point, index) in heroPoints"
             :key="point"
-            class="rounded-[1.25rem] border border-[var(--site-line)] bg-[var(--site-bg-muted)] px-4 py-4"
+            class="hero-point"
           >
-            <div class="flex gap-3">
-              <span class="mt-2 size-2 shrink-0 rounded-full bg-[var(--site-accent)]" />
-              <p class="text-sm leading-6 text-[var(--site-muted)]">
-                {{ point }}
-              </p>
-            </div>
+            <span class="hero-point-index">0{{ index + 1 }}</span>
+            <p class="mt-3 text-sm leading-6 text-[var(--site-muted)]">
+              {{ point }}
+            </p>
           </div>
         </div>
       </div>
 
-      <aside class="surface-card-accent rounded-[2rem] p-6 sm:p-8">
-        <p class="label-caption">
-          Структура проекта
-        </p>
-        <h2 class="font-display mt-3 text-3xl leading-tight text-[var(--site-text)] sm:text-[2.25rem]">
-          Коммерческое предложение, которое можно быстро согласовать внутри компании
-        </h2>
-        <p class="mt-4 text-base leading-7 text-[var(--site-muted)]">
-          Сразу показываем не только стоимость оборудования, но и состав поставки, требования к объекту и дальнейший сценарий запуска.
-        </p>
+      <aside
+        class="hero-visual-panel"
+        aria-label="Схема двухуровневого парковочного подъемника"
+      >
+        <div class="lift-scene">
+          <div class="scene-building" />
+          <div class="scene-parking">
+            P
+          </div>
 
-        <div class="mt-6 grid gap-3">
-          <article
-            v-for="block in projectBlocks"
-            :key="block.title"
-            class="rounded-[1.25rem] border border-[rgba(53,97,141,0.14)] bg-white/80 px-4 py-4"
-          >
-            <p class="text-sm font-semibold text-[var(--site-text)]">
-              {{ block.title }}
-            </p>
-            <p class="mt-2 text-sm leading-6 text-[var(--site-muted)]">
-              {{ block.text }}
-            </p>
-          </article>
+          <div class="lift-system">
+            <span class="lift-brace" />
+            <span class="lift-column lift-column-left" />
+            <span class="lift-column lift-column-right" />
+            <span class="lift-deck lift-deck-top" />
+            <span class="lift-deck lift-deck-bottom" />
+
+            <span class="lift-car lift-car-top">
+              <span class="lift-wheel lift-wheel-left" />
+              <span class="lift-wheel lift-wheel-right" />
+            </span>
+            <span class="lift-car lift-car-bottom">
+              <span class="lift-wheel lift-wheel-left" />
+              <span class="lift-wheel lift-wheel-right" />
+            </span>
+          </div>
         </div>
 
-        <div class="mt-6 rounded-[1.5rem] bg-[var(--site-text)] px-5 py-5 text-white">
-          <p class="text-[0.72rem] font-bold uppercase tracking-[0.2em] text-white/60">
-            Что получает заказчик
-          </p>
-          <ul class="mt-4 grid gap-3">
-            <li
-              v-for="item in proposalItems"
-              :key="item"
-              class="flex items-start gap-3 text-sm leading-6 text-white/72"
-            >
-              <span class="mt-2 size-2 shrink-0 rounded-full bg-[var(--site-accent)]" />
-              <span>{{ item }}</span>
-            </li>
-          </ul>
+        <div class="visual-caption">
+          <strong>2 уровня на одном месте</strong>
+          <span>Поставка, монтаж, запуск, сервис и ремонт парковочного оборудования.</span>
         </div>
       </aside>
+    </div>
+
+    <div class="project-strip">
+      <div class="project-strip-title">
+        <p class="label-caption text-white/60">
+          Структура проекта
+        </p>
+        <h2 class="font-display mt-3 text-3xl leading-tight">
+          Расчет для собственника, УК или технической службы
+        </h2>
+      </div>
+
+      <div class="project-strip-grid">
+        <article
+          v-for="block in projectBlocks"
+          :key="block.title"
+          class="project-strip-card"
+        >
+          <h3 class="text-base font-extrabold uppercase tracking-[0.04em] text-[var(--site-text)]">
+            {{ block.title }}
+          </h3>
+          <p class="mt-3 text-sm leading-6 text-[var(--site-muted)]">
+            {{ block.text }}
+          </p>
+        </article>
+      </div>
     </div>
   </section>
 </template>

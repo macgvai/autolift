@@ -5,14 +5,20 @@ defineProps<{
   websiteLabel: string
   websiteHref: string
   contactEmail: string
+  contactPhone?: string
+  companyLegalName?: string
+  companyInn?: string
+  companyOgrn?: string
+  legalAddress?: string
 }>()
 
 const footerLinks = [
-  { label: 'Каталог', href: '#catalog' },
-  { label: 'Преимущества', href: '#advantages' },
-  { label: 'Поставка', href: '#workflow' },
-  { label: 'FAQ', href: '#faq' },
-  { label: 'Контакты', href: '#contact' }
+  { label: 'Решения', href: '#catalog' },
+  { label: 'Сервис и ремонт', href: '#service' },
+  { label: 'Почему мы', href: '#advantages' },
+  { label: 'Монтаж и запуск', href: '#workflow' },
+  { label: 'Вопросы', href: '#faq' },
+  { label: 'Заявка', href: '#contact' }
 ]
 </script>
 
@@ -35,7 +41,8 @@ const footerLinks = [
           </div>
 
           <p class="mt-4 max-w-xl text-sm leading-6 text-[var(--site-muted)]">
-            Продажа, монтаж и обслуживание автомобильных подъемников для СТО, дилерских центров, шинных комплексов и грузовых сервисов.
+            Продажа, монтаж, ремонт и обслуживание парковочных подъемников для ЖК, БЦ, ТЦ,
+            подземных паркингов, управляющих компаний и частных объектов.
           </p>
         </div>
 
@@ -70,6 +77,32 @@ const footerLinks = [
               {{ contactEmail }}
             </a>
           </p>
+          <p>
+            {{ contactPhone || 'телефон уточняется' }}
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-6 grid gap-4 border-t border-[var(--site-line)] pt-5 text-xs leading-6 text-[var(--site-muted)] md:grid-cols-[1fr_auto] md:items-end">
+        <div>
+          <p>{{ companyLegalName || companyName }}</p>
+          <p>{{ companyInn || 'ИНН уточняется' }} · {{ companyOgrn || 'ОГРН уточняется' }}</p>
+          <p>{{ legalAddress || 'Юридический адрес уточняется' }}</p>
+        </div>
+
+        <div class="flex flex-wrap gap-x-4 gap-y-2 md:justify-end">
+          <a
+            href="#contact"
+            class="transition hover:text-[var(--site-text)]"
+          >
+            Политика конфиденциальности
+          </a>
+          <a
+            href="#contact"
+            class="transition hover:text-[var(--site-text)]"
+          >
+            Условия обслуживания
+          </a>
           <p>© {{ new Date().getFullYear() }} {{ companyName }}</p>
         </div>
       </div>
