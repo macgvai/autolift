@@ -86,7 +86,7 @@ textarea:focus-visible {
 
 .page-shell {
   position: relative;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 .page-orb {

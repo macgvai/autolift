@@ -31,7 +31,7 @@ watch(() => route.fullPath, closeMobileMenu)
 </script>
 
 <template>
-  <header class="site-header relative">
+  <header class="site-header sticky top-0 z-50 backdrop-blur-md bg-white/70">
     <div class="container-shell">
       <div class="header-card flex items-center gap-4 rounded-[1.5rem] px-4 py-3 sm:px-5">
         <a
