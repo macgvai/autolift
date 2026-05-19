@@ -64,11 +64,11 @@ watch(() => route.fullPath, closeMobileMenu)
         >
           <span class="flex size-11 sm:size-22 shrink-0 items-center justify-center rounded-[1rem] bg-[var(--site-bg-muted)] logo-mark bg-no-repeat bg-contain"></span>
 
-          <div class="hidden sm:block min-w-0">
+          <div class="min-w-0">
             <div class="font-display block truncate text-lg font-semibold tracking-[0.08em] text-[var(--site-text)] sm:text-5xl">
               <span>CТРОЙ</span><span class="text-[rgb(144,25,22)]">ПРОТЕХ</span>
             </div>
-            <span class="mt-1 block truncate text-[0.68rem] uppercase tracking-[0.18em] text-[var(--site-muted)]">Строительные производственные технологии</span>
+            <span class="hidden sm:block mt-1 truncate text-[0.68rem] uppercase tracking-[0.18em] text-[var(--site-muted)]">Строительные производственные технологии</span>
           </div>
         </a>
 
