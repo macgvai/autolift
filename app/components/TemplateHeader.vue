@@ -25,12 +25,15 @@ const closeMobileMenu = () => {
 
 const toggleMobileMenu = () => {
   mobileMenuOpen.value = !mobileMenuOpen.value
+
+  if (mobileMenuOpen.value) {
+    isTop.value = true
+  }
 }
 
 const isTop = ref(true)
 
 const handleScroll = () => {
-  console.log(window.scrollY)
   isTop.value = window.scrollY < 200
 }
 
