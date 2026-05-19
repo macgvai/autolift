@@ -11,5 +11,8 @@ export default defineNuxtConfig({
   routeRules: {
     '/': { prerender: true }
   },
+  fonts: {
+    provider: 'google'
+  }
 
 })
