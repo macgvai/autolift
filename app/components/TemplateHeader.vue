@@ -53,7 +53,7 @@ watch(() => route.fullPath, closeMobileMenu)
       isTop ? 'bg-white opacity-100' : 'bg-white/70 opacity-50 hover:opacity-100'
     ]">
     <div class="container-shell">
-      <div class="header-card flex items-center gap-4 rounded-[1.5rem] px-4 py-3 sm:px-5">
+      <div class="header-card flex items-center gap-4 rounded-[1.5rem] px-4 sm:px-5">
         <a
             href="#top"
             class="flex min-w-0 items-center gap-4"
