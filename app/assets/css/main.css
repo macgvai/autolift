@@ -475,7 +475,7 @@ textarea:focus-visible {
 }
 
 .logo-mark {
-  background-image: url("logo.svg");
+  background-image: url("/logo.svg");
 }
 
 .hero-section {

@@ -60,7 +60,6 @@ watch(() => route.fullPath, closeMobileMenu)
             @click="closeMobileMenu"
         >
           <span class="flex size-11 sm:size-22 shrink-0 items-center justify-center rounded-[1rem] bg-[var(--site-bg-muted)] logo-mark bg-no-repeat bg-contain"></span>
-<!--          <img alt="СТРОЙПРОТЕХ" src="/logo.svg">-->
 
           <div class="min-w-0">
             <div class="font-display block truncate text-lg font-semibold tracking-[0.08em] text-[var(--site-text)] sm:text-5xl">
