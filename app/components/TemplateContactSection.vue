@@ -97,9 +97,22 @@ const mailtoLink = computed(() => {
   return `mailto:${props.contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
 })
 
-const submitLead = async () => {
-  await navigateTo(mailtoLink.value, { external: true })
-}
+const submitForm = async () => {
+  try {
+    const response = await $fetch('/api/rabbitmq', {
+      method: 'POST',
+      body: {...leadForm}
+    });
+
+    console.log('Успех:', response);
+    alert('Сообщение отправлено!');
+    // leadForm = { name: '', email: '', message: '' }; // сброс
+  } catch (error) {
+    console.error('Ошибка:', error);
+    alert('Не удалось отправить сообщение');
+  }
+};
+
 </script>
 
 <template>
@@ -210,7 +223,7 @@ const submitLead = async () => {
 
       <form
         class="panel-surface rounded-[2rem] p-6 sm:p-8"
-        @submit.prevent="submitLead"
+        @submit.prevent="submitForm"
       >
         <div class="flex flex-col gap-2">
           <p class="label-caption">

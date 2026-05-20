@@ -1,12 +1,55 @@
 services:
+  rabbitmq:
+    image: rabbitmq:4-management
+    container_name: rabbitmq
+
+    restart: unless-stopped
+
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - app-network
+
   nuxt-prod:
     build:
       context: .
       target: production
-    ports:
-      - "3077:3000"
+
+    container_name: nuxt-prod
+
     restart: unless-stopped
 
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+
+    ports:
+      - "3077:3000"
+
+    environment:
+      NODE_ENV: production
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672
+
+    networks:
+      - app-network
+
+
+networks:
+  app-network:
+
 volumes:
-  nuxt_node_modules:
-  nuxt_build:
+  rabbitmq_data:
