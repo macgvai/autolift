@@ -47,6 +47,16 @@ services:
     networks:
       - app-network
 
+  worker:
+    build: .
+    command: node .output/server/workers/consumer.js
+    environment:
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672
+    depends_on:
+      - nuxt-prod
+      - rabbitmq
+    networks:
+      - app-network
 
 networks:
   app-network:

@@ -9,7 +9,7 @@ async function getChannel() {
     connection = await amqp.connect(process.env.RABBITMQ_URL!)
     channel = await connection.createChannel()
 
-    await channel.assertQueue('test_queue', { durable: true })
+    await channel.assertQueue('orders_queue', { durable: true })
 
     return channel
 }
@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
         const ch = await getChannel()
 
         ch.sendToQueue(
-            'test_queue',
+            'orders_queue',
             Buffer.from(JSON.stringify(body)),
             { persistent: true }
         )

@@ -17,6 +17,7 @@ ENV NODE_ENV=development
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+COPY workers ./.output/server/workers
 RUN npm run postinstall
 
 EXPOSE 3000 24678
@@ -40,6 +41,7 @@ ENV NODE_ENV=production
 ENV NUXT_TELEMETRY_DISABLED=1
 
 COPY --from=build /app/.output ./.output
+COPY workers ./.output/server/workers
 
 EXPOSE 3000
 
