@@ -62,7 +62,7 @@ const projectBlocks = [
             :key="point"
             class="hero-point"
           >
-            <span class="hero-point-index">0{{ index + 1 }}</span>
+<!--            <span class="hero-point-index">0{{ index + 1 }}</span>-->
             <p class="mt-3 text-sm leading-6 text-[var(--site-muted)]">
               {{ point }}
             </p>

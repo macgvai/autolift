@@ -79,9 +79,9 @@ const documents = [
             :key="benefit.title"
             class="metal-card rounded-[1.5rem] p-5"
           >
-            <p class="label-caption">
-              0{{ index + 1 }}
-            </p>
+<!--            <p class="label-caption">-->
+<!--              0{{ index + 1 }}-->
+<!--            </p>-->
             <h3 class="mt-4 text-lg font-semibold text-[var(--site-text)]">
               {{ benefit.title }}
             </h3>

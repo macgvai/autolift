@@ -30,9 +30,9 @@ defineProps<{
         :key="stat.label"
         class="metal-card stat-card rounded-[1.5rem] p-6"
       >
-        <p class="label-caption">
-          Показатель
-        </p>
+<!--        <p class="label-caption">-->
+<!--          Показатель-->
+<!--        </p>-->
         <p class="font-display mt-6 text-3xl leading-none text-[var(--site-text)] sm:text-[2.35rem]">
           {{ stat.value }}
         </p>

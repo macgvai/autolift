@@ -2,15 +2,6 @@
 type LeadForm = {
   name: string
   phone: string
-  email: string
-  company: string
-  address: string
-  objectType: string
-  taskType: string
-  parkingSpaces: string
-  ceilingHeight: string
-  placeSize: string
-  hasFiles: string
   message: string
 }
 
@@ -26,15 +17,6 @@ const props = defineProps<{
 const leadForm = reactive<LeadForm>({
   name: '',
   phone: '',
-  email: '',
-  company: '',
-  address: '',
-  objectType: '',
-  taskType: '',
-  parkingSpaces: '',
-  ceilingHeight: '',
-  placeSize: '',
-  hasFiles: '',
   message: ''
 })
 
@@ -55,47 +37,47 @@ const responsePackage = [
   }
 ]
 
-const objectTypes = [
-  'ЖК',
-  'БЦ',
-  'ТЦ',
-  'частный паркинг',
-  'гараж',
-  'управляющая компания',
-  'другое'
-]
-
-const taskTypes = [
-  'поставка',
-  'монтаж',
-  'ремонт',
-  'обслуживание',
-  'диагностика',
-  'запчасти'
-]
-
-const mailtoLink = computed(() => {
-  const subject = `Запрос расчета парковочного подъемника${leadForm.company ? ` - ${leadForm.company}` : ''}`
-  const body = [
-    `Заявка с сайта ${props.companyName}`,
-    '',
-    `Имя: ${leadForm.name || '-'}`,
-    `Телефон: ${leadForm.phone || '-'}`,
-    `E-mail: ${leadForm.email || '-'}`,
-    `Компания / УК / собственник: ${leadForm.company || '-'}`,
-    `Город / адрес объекта: ${leadForm.address || '-'}`,
-    `Тип объекта: ${leadForm.objectType || '-'}`,
-    `Задача: ${leadForm.taskType || '-'}`,
-    `Количество машиномест: ${leadForm.parkingSpaces || '-'}`,
-    `Высота потолка: ${leadForm.ceilingHeight || '-'}`,
-    `Размеры места: ${leadForm.placeSize || '-'}`,
-    `Есть фото / план паркинга: ${leadForm.hasFiles || '-'}`,
-    '',
-    leadForm.message || 'Комментарий не указан'
-  ].join('\n')
-
-  return `mailto:${props.contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-})
+// const objectTypes = [
+//   'ЖК',
+//   'БЦ',
+//   'ТЦ',
+//   'частный паркинг',
+//   'гараж',
+//   'управляющая компания',
+//   'другое'
+// ]
+//
+// const taskTypes = [
+//   'поставка',
+//   'монтаж',
+//   'ремонт',
+//   'обслуживание',
+//   'диагностика',
+//   'запчасти'
+// ]
+//
+// const mailtoLink = computed(() => {
+//   const subject = `Запрос расчета парковочного подъемника${leadForm.company ? ` - ${leadForm.company}` : ''}`
+//   const body = [
+//     `Заявка с сайта ${props.companyName}`,
+//     '',
+//     `Имя: ${leadForm.name || '-'}`,
+//     `Телефон: ${leadForm.phone || '-'}`,
+//     `E-mail: ${leadForm.email || '-'}`,
+//     `Компания / УК / собственник: ${leadForm.company || '-'}`,
+//     `Город / адрес объекта: ${leadForm.address || '-'}`,
+//     `Тип объекта: ${leadForm.objectType || '-'}`,
+//     `Задача: ${leadForm.taskType || '-'}`,
+//     `Количество машиномест: ${leadForm.parkingSpaces || '-'}`,
+//     `Высота потолка: ${leadForm.ceilingHeight || '-'}`,
+//     `Размеры места: ${leadForm.placeSize || '-'}`,
+//     `Есть фото / план паркинга: ${leadForm.hasFiles || '-'}`,
+//     '',
+//     leadForm.message || 'Комментарий не указан'
+//   ].join('\n')
+//
+//   return `mailto:${props.contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+// })
 
 const submitForm = async () => {
   try {
@@ -252,114 +234,6 @@ const submitForm = async () => {
               type="tel"
               class="form-input mt-2"
               placeholder="+7 (___) ___-__-__"
-            >
-          </label>
-
-          <label class="block">
-            <span class="label-caption">E-mail</span>
-            <input
-              v-model="leadForm.email"
-              type="email"
-              class="form-input mt-2"
-              placeholder="mail@example.ru"
-            >
-          </label>
-
-          <label class="block">
-            <span class="label-caption">Компания / УК</span>
-            <input
-              v-model="leadForm.company"
-              type="text"
-              class="form-input mt-2"
-              placeholder="Название организации"
-            >
-          </label>
-
-          <label class="block sm:col-span-2">
-            <span class="label-caption">Город / адрес объекта</span>
-            <input
-              v-model="leadForm.address"
-              type="text"
-              class="form-input mt-2"
-              placeholder="Город, ЖК, БЦ, паркинг или адрес"
-            >
-          </label>
-
-          <label class="block">
-            <span class="label-caption">Тип объекта</span>
-            <select
-              v-model="leadForm.objectType"
-              class="form-input mt-2"
-            >
-              <option value="">
-                Выберите тип объекта
-              </option>
-              <option
-                v-for="item in objectTypes"
-                :key="item"
-                :value="item"
-              >
-                {{ item }}
-              </option>
-            </select>
-          </label>
-
-          <label class="block">
-            <span class="label-caption">Задача</span>
-            <select
-              v-model="leadForm.taskType"
-              class="form-input mt-2"
-            >
-              <option value="">
-                Выберите задачу
-              </option>
-              <option
-                v-for="item in taskTypes"
-                :key="item"
-                :value="item"
-              >
-                {{ item }}
-              </option>
-            </select>
-          </label>
-
-          <label class="block">
-            <span class="label-caption">Количество машиномест</span>
-            <input
-              v-model="leadForm.parkingSpaces"
-              type="text"
-              class="form-input mt-2"
-              placeholder="Например: 4, 12, 30"
-            >
-          </label>
-
-          <label class="block">
-            <span class="label-caption">Высота потолка</span>
-            <input
-              v-model="leadForm.ceilingHeight"
-              type="text"
-              class="form-input mt-2"
-              placeholder="Например: 3,4 м"
-            >
-          </label>
-
-          <label class="block">
-            <span class="label-caption">Размеры места</span>
-            <input
-              v-model="leadForm.placeSize"
-              type="text"
-              class="form-input mt-2"
-              placeholder="Ширина, длина, проезд"
-            >
-          </label>
-
-          <label class="block">
-            <span class="label-caption">Фото / план паркинга</span>
-            <input
-              v-model="leadForm.hasFiles"
-              type="text"
-              class="form-input mt-2"
-              placeholder="Есть / нет / отправим отдельно"
             >
           </label>
 

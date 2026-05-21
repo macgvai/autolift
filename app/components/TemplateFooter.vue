@@ -77,17 +77,17 @@ const footerLinks = [
               {{ contactEmail }}
             </a>
           </p>
-          <p>
-            {{ contactPhone || 'телефон уточняется' }}
-          </p>
+          <a
+              :href="`tel:${contactPhone}`"
+          >
+            {{ contactPhone }}
+          </a>
         </div>
       </div>
 
       <div class="mt-6 grid gap-4 border-t border-[var(--site-line)] pt-5 text-xs leading-6 text-[var(--site-muted)] md:grid-cols-[1fr_auto] md:items-end">
         <div>
           <p>{{ companyLegalName || companyName }}</p>
-          <p>{{ companyInn || 'ИНН уточняется' }} · {{ companyOgrn || 'ОГРН уточняется' }}</p>
-          <p>{{ legalAddress || 'Юридический адрес уточняется' }}</p>
         </div>
 
         <div class="flex flex-wrap gap-x-4 gap-y-2 md:justify-end">

@@ -25,9 +25,9 @@ import { faqItems as faqs } from '~/data/site'
           class="faq-item metal-card rounded-[1.5rem]"
         >
           <summary class="flex cursor-pointer list-none items-start gap-4 p-5 sm:p-6">
-            <span class="mt-1 inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-[var(--site-bg-muted)] text-sm font-semibold text-[var(--site-accent-strong)]">
-              {{ String(index + 1).padStart(2, '0') }}
-            </span>
+<!--            <span class="mt-1 inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-[var(&#45;&#45;site-bg-muted)] text-sm font-semibold text-[var(&#45;&#45;site-accent-strong)]">-->
+<!--              {{ String(index + 1).padStart(2, '0') }}-->
+<!--            </span>-->
             <span class="flex-1 text-base font-semibold leading-7 text-[var(--site-text)] sm:text-lg">
               {{ item.question }}
             </span>
