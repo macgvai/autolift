@@ -9,12 +9,12 @@ import { faqItems as faqs } from '~/data/site'
   >
     <div class="grid gap-6 xl:grid-cols-[0.92fr_1.08fr]">
       <div>
-        <span class="eyebrow">FAQ</span>
+        <span class="eyebrow">Вопросы</span>
         <h2 class="section-title mt-5 text-4xl sm:text-5xl">
-          Частые вопросы перед согласованием закупки
+          Частые вопросы перед установкой или ремонтом парковочного подъемника
         </h2>
         <p class="section-copy mt-5 max-w-xl">
-          По запросу подготовим отдельный чек-лист по полу, потолку, электрике и рабочей зоне еще до выезда инженера.
+          По запросу подготовим чек-лист по высоте, основанию, электрике, безопасности и документам для собственника, УК или технической службы.
         </p>
       </div>
 
@@ -25,9 +25,9 @@ import { faqItems as faqs } from '~/data/site'
           class="faq-item metal-card rounded-[1.5rem]"
         >
           <summary class="flex cursor-pointer list-none items-start gap-4 p-5 sm:p-6">
-            <span class="mt-1 inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-[var(--site-bg-muted)] text-sm font-semibold text-[var(--site-accent-strong)]">
-              {{ String(index + 1).padStart(2, '0') }}
-            </span>
+<!--            <span class="mt-1 inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-[var(&#45;&#45;site-bg-muted)] text-sm font-semibold text-[var(&#45;&#45;site-accent-strong)]">-->
+<!--              {{ String(index + 1).padStart(2, '0') }}-->
+<!--            </span>-->
             <span class="flex-1 text-base font-semibold leading-7 text-[var(--site-text)] sm:text-lg">
               {{ item.question }}
             </span>
